@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="template.css">
+	<title>Blog Escritura!</title>
+</head>
+<body>
+    <div class="header">
+        <table width="100%">
+            <td width="80%"><img src="/res/blog.png" alt="logo" /><h1> Escritura!</h1></td>
+            <td width="10%"><a href="{{access_link}}"><img src="/res/logout.png"/></a></td>
+        </table>
+    </div>
+
+<div id="dvTitle">
+<p><a href="/add"><img height="24px" width="24px" title="add" class="button-add" src="/res/add.svg"/></a></p>
+</div>
+<div id="dvBlogs">
+    {% for blog in blogs %}
+			<div id="tblBlogs">
+			<b>{{blog.title}}</b>
+            <br/>
+            <i>  ({{blog.added}})</i>
+            <br/>
+            <i> Author: {{blog.user}}</i>
+            <br/><br/>
+                <div id="truncate">{{blog.text}}</div>
+			</p>
+            <div style="position: relative; bottom: 200px;">
+                <a href="/modify?id={{blog.key.urlsafe()}}"><img width="16px" height="16px" title="modify" class="button-card" src="/res/modify.svg"/></a>
+                <a href="/delete?id={{blog.key.urlsafe()}}"><img width="16px" height="16px" title="delete" class="button-card" src="/res/delete.svg"/></a>
+                <a href="/view?id={{blog.key.urlsafe()}}"><img width="16px" height="16px" title="view" class="button-card" src="/res/eye.svg"/></a>
+			</div>
+			<br/>
+            </div>
+    {% endfor %}
+</div>
+</div>
+</body>
+</html>

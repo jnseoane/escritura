@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="template.css"/>
+	<title>Blog Escritura!</title>
+	<script type="text/javascript">
+		function hideError() {
+			document.getElementById( "dvError" ).style.display = "none";
+		}
+		function showError(msg) {
+			var dvError = document.getElementById( "dvError" );
+			var pError = document.createElement( "p" );
+			dvError.innerHTML = "";
+			dvError.appendChild( pError );
+			pError.appendChild( document.createTextNode( msg ) );
+			dvError.style.display = "block";
+		}
+		function chk() {
+			var toret = true;
+			var edTitle = document.getElementById( "edTitle" );
+			var edText = document.getElementById( "edText" );
+			hideError();
+			if ( edTitle.value.trim().length == 0 ) {
+				showError( "Title is mandatory" );
+				toret = false;
+			}
+			if ( edText.value.trim().length == 0 ) {
+				showError( "Text is mandatory" );
+				toret = false;
+			}
+			return toret;
+		}
+	</script>
+</head>
+<body>
+<div class="header">
+        <table width="100%">
+            <td width="80%"><img src="/res/blog.png" alt="logo" /><h1> Escritura!</h1></td>
+            <td width="10%"><a href="{{access_link}}"><img src="/res/logout.png"/></a></td>
+        </table>
+    </div>
+
+    <div id="dvTitle">
+        <p><h1>Modify Blog</h1></p>
+    </div>
+
+    <div id="dvBlogs">
+    <div id="dvError"></div>
+    <form id="tb1Blogs"
+        onsubmit="javascript: return chk();"
+        action="/modify?id={{blog.key.urlsafe()}}" method="post" enctype="multipart/form-data">
+        <h2>Title: </h2><input type="text" class="input-add" name="title" id="edTitle" size="80" maxlength="30"
+                value="{{blog.title}}"/>
+
+        <br/>
+        <h2>Text: </h2><textarea name="text" class="textarea-add" id="edText" rows="6" cols="100" maxlength="1500">{{blog.text}}</textarea>
+        <p>
+        <a href="/main"><img width="16px" height="16px" alt="back" title="back" class="button-card" src="/res/back.svg"/></a>
+            <input type="image"
+                class="button-card"
+                title="modify" alt="modify"
+                width="16px" height="16px" src="/res/modify.svg"
+                onsubmit="javascript: document.tb1Blogs.submit()"/>
+
+        </p>
+    </form>
+    </div>
+</body>
+</html>
