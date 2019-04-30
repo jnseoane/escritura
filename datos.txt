@@ -1,0 +1,5 @@
+Nombre:  	Juan José Nieves Seoane
+DNI:     	45146277Z
+Email:   	jnseoane@esei.uvigo.es
+URL Git: 	https://github.com/jnseoane/escritura
+URL App: 	https://blog-239215.appspot.com/
